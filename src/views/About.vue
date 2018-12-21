@@ -7,9 +7,7 @@
 <script>
 export default {
   name: "about",
-  components: {
-  },
-  created() {
-  },
+  components: {},
+  created() {}
 };
 </script>

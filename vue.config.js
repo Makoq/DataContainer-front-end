@@ -1,7 +1,7 @@
 module.exports = {
-  baseUrl: './',
+  baseUrl: "./",
   devServer: {
-    host: 'localhost',
+    host: "localhost",
     port: 8080,
     // 设置代理
     proxy: {
