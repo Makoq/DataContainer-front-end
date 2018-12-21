@@ -6,6 +6,11 @@
       <div class="header">
         <div class="logo">OpenGMS </div>
       </div>
+      <div class="right-list">
+        <a class="right-list-item">Schema</a>
+        <a class="right-list-item">Map</a>
+        <a class="right-list-item">Refactor</a>
+      </div>
     </div>
 
   </div>
@@ -182,5 +187,20 @@ export default {
   width: 100%;
   height: 100%;
   opacity: 0.6;
+}
+
+.right-list {
+  float: right;
+  line-height: 70px;
+}
+
+.right-list-item {
+  margin-top: 10px;
+  position: relative;
+  transition-property: color;
+  transition-duration: 0.3s;
+  display: inline-block;
+  color: rgb(251, 251, 251);
+  padding: 0 20px 0 17px;
 }
 </style>
