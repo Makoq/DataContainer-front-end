@@ -89,11 +89,9 @@ var API = {
     this.doRequest("schemaDoc", options);
   },
 
-  blanckRequest(url,options) {
+  blanckRequest(url, options) {
     this.doRequest(url, options);
   }
-
-
 };
 
 export default API;
