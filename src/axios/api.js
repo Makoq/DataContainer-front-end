@@ -82,7 +82,6 @@ var API = {
   },
 
   doLogin(options) {
-    //POST
     this.doRequest("user/login", options);
   },
 
@@ -90,13 +89,11 @@ var API = {
     this.doRequest("schemaDoc", options);
   },
 
-  map(options) {
-    this.doRequest("map", options);
-  },
-
-  refactor(options) {
-    this.doRequest("refactor", options);
+  blanckRequest(url,options) {
+    this.doRequest(url, options);
   }
+
+
 };
 
 export default API;

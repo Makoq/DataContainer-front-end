@@ -1,23 +1,21 @@
 <template>
-  <div class="home">
+  <div>
+    <home-header></home-header>
     <div class="first-screen">
       <div id="canvas"></div>
       <div class="first-bg"></div>
-      <div class="header">
-        <div class="logo">OpenGMS </div>
-      </div>
-      <div class="right-list">
-        <a class="right-list-item">Schema</a>
-        <a class="right-list-item">Map</a>
-        <a class="right-list-item">Refactor</a>
+      <div class="panel">
+        <div class="welcome">Welcome to Data Service Container</div>
       </div>
     </div>
-
+    <home-footer></home-footer>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import homeHeader from "@/components/headers/HomeHeader";
+import homeFooter from "@/components/headers/HomeFooter";
 import * as THREE from "three";
 import * as TWEEN from "@tweenjs/tween.js";
 
@@ -33,7 +31,7 @@ export default {
       mouseY: 0
     };
   },
-  components: {},
+  components: { homeHeader, homeFooter },
   methods: {
     init() {
       let contanier = document.getElementById("canvas");
@@ -69,6 +67,16 @@ export default {
         event => {
           this.mouseX = event.clientX - window.innerWidth / 2;
           this.mouseY = event.clientY - window.innerHeight / 2;
+        },
+        false
+      );
+
+      window.addEventListener(
+        "resize",
+        () => {
+          this.camera.aspect = window.innerWidth / window.innerHeight;
+          this.camera.updateProjectionMatrix();
+          this.renderer.setSize(window.innerWidth, window.innerHeight);
         },
         false
       );
@@ -141,6 +149,12 @@ export default {
         .delay(delay)
         .to({ x: 0.01, y: 0.01 }, 10000)
         .start();
+    },
+
+    getGalleryStyle() {
+      var img = require("@/assets/images/demo.png");
+      var styleStr = `background:url(${img});`;
+      return styleStr;
     }
   },
   mounted() {
@@ -161,21 +175,6 @@ export default {
   left: 0;
 }
 
-.header {
-  position: relative;
-  z-index: 1;
-}
-
-.logo {
-  font: bold 28px arial;
-  text-decoration: none;
-  line-height: 60px;
-  color: #409eff;
-  line-height: 80px;
-  float: left;
-  margin-left: 60px;
-}
-
 .first-bg {
   background-image: url("../assets/images/bg3.jpg");
   background-size: cover;
@@ -189,18 +188,21 @@ export default {
   opacity: 0.6;
 }
 
-.right-list {
-  float: right;
-  line-height: 70px;
+.panel {
+  height: 700px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
-.right-list-item {
-  margin-top: 10px;
+.welcome {
+  text-align: center;
+  font-size: 36px;
+  text-shadow: 0 0px 2px rgba(255, 255, 255, 1);
+  z-index: 3;
   position: relative;
-  transition-property: color;
-  transition-duration: 0.3s;
-  display: inline-block;
-  color: rgb(251, 251, 251);
-  padding: 0 20px 0 17px;
+  top: -50px;
+  color: #fff;
+  line-height: 50px;
 }
 </style>

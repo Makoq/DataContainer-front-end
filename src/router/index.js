@@ -14,7 +14,6 @@ if (localStorage.getItem("token")) {
 }
 
 const router = new Router({
-  mode: "history",
   base: process.env.BASE_URL,
   routes
 });

@@ -1,5 +1,5 @@
 export const page404 = {
-  path: "/404",
+  path: "/*",
   name: "error-404",
   meta: {
     title: "404-页面不存在"
@@ -34,4 +34,20 @@ export const about = {
   component: () => import(/* webpackChunkName: "about" */ "@/views/About.vue")
 };
 
-export const routes = [home, about, page500, page404];
+export const schema = {
+  path: "/schema/:id",
+  component: () => import("@/views/Schema.vue"),
+  children: [
+    {
+      path: "detail",
+      component: () => import("@/components/schema/SchemaDetail.vue")
+    }
+  ]
+};
+
+export const schemas = {
+  path: "/schema",
+  component: () => import("@/views/SchemaList.vue")
+};
+
+export const routes = [home, about, schemas, schema, page500, page404];
