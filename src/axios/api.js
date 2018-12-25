@@ -89,6 +89,30 @@ var API = {
     this.doRequest("schemaDoc", options);
   },
 
+  schemaDocCount(){
+    this.doRequest("schemaDoc/count", options);
+  },
+
+  mapCount(){
+    this.doRequest("map/count", options);
+  },
+
+  mapt(){
+    this.doRequest("map", options);
+  },
+
+  refactorCount(){
+    this.doRequest("refactor/count", options);
+  },
+
+  refactor(){
+    this.doRequest("refactor", options);
+  },
+
+
+
+
+
   blanckRequest(url, options) {
     this.doRequest(url, options);
   }
