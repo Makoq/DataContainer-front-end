@@ -63,7 +63,7 @@ export default {
     });
   },
   mounted() {
-    this.$router.push("/mapListContent")
+    this.$router.push("/mapListContent");
   }
 };
 </script>
