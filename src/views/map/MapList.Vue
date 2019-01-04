@@ -71,7 +71,7 @@ export default {
   mounted() {
     this.$router.push("/mapListContent");
   },
-  components:{
+  components: {
     MyHeader
   }
 };
