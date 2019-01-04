@@ -34,6 +34,7 @@ export const about = {
 export const schema = {
   path: "/schema/:id",
   component: () => import("@/views/schema/Schema"),
+
   children: [
     {
       path: "detail",
@@ -59,6 +60,7 @@ export const schema = {
 export const schemas = {
   path: "/schema",
   component: () => import("@/views/schema/SchemaList"),
+  redirect: { path: "/schemaListContent" },
   children: [
     {
       path: "/schemaListContent",

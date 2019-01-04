@@ -1,13 +1,13 @@
 <template>
   <div>
     <div>
-      <mavon-editor
+      <mavon-editor defaultOpen="preview"
+       :editable="false" 
         :ishljs="true"
         v-model="detailMarkdown"
-        defaultOpen="edit"
+       
         :toolbarsFlag="false"
-        :subfiled="false"
-      ></mavon-editor>
+        :subfield="false"></mavon-editor>
     </div>
   </div>
 </template>

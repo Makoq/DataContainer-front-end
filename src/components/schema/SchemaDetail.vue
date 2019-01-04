@@ -155,7 +155,7 @@
     <el-col :span="18">
        <br>
       <transition name="el-zoom-in-top">
-      <router-view :refs="refs" :maps="maps" :treeObj="treeObj" :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"></router-view>
+      <router-view :refs="refs" :maps="maps" :treeObj="treeObj" :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"  ></router-view>
       </transition>
     </el-col>
   </el-row>
@@ -191,18 +191,35 @@ export default {
       defaultProps: {
         children: "children",
         label: "label"
-      }
+      },
+      on: true
     };
   },
   methods: {
     addmarkdown() {
-      this.$router.push("markdown");
+      if (this.on) {
+        this.$router.push("detail/markdown");
+        this.on = false;
+      } else {
+        this.$router.push("markdown");
+      }
     },
     addtree() {
-      this.$router.push("schematree");
+      if (this.on) {
+        this.$router.push("detail/schematree");
+        this.on = false;
+      } else {
+        this.$router.push("schematree");
+      }
     },
+
     addRefMap() {
-      this.$router.push("table");
+      if (this.on) {
+        this.$router.push("detail/table");
+        this.on = false;
+      } else {
+        this.$router.push("table");
+      }
     },
     backlist() {
       this.$router.push("/schemaListContent");
@@ -246,7 +263,7 @@ export default {
     // this.$router.push("detail/markdown")
   },
   mounted() {
-    this.$router.push("detail/markdown");
+    this.$router.replace(this.$router.path);
   }
 };
 </script>
