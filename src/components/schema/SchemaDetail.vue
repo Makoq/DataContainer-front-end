@@ -197,29 +197,37 @@ export default {
   },
   methods: {
     addmarkdown() {
-      if (this.on) {
-        this.$router.push("detail/markdown");
-        this.on = false;
-      } else {
-        this.$router.push("markdown");
-      }
+      // if (this.on) {
+      //   this.$router.push("/schema"+this.$router.params.id+"detail/markdown");
+      //   this.on = false;
+      // } else {
+      //   this.$router.push("markdown");
+      // }
+
+      this.$router.push(
+        "/schema/" + this.$route.params.id + "/detail/markdown"
+      );
     },
     addtree() {
-      if (this.on) {
-        this.$router.push("detail/schematree");
-        this.on = false;
-      } else {
-        this.$router.push("schematree");
-      }
+      // if (this.on) {
+      //   this.$router.push("detail/schematree");
+      //   this.on = false;
+      // } else {
+      //   this.$router.push("schematree");
+      // }
+      this.$router.push(
+        "/schema/" + this.$route.params.id + "/detail/schematree"
+      );
     },
 
     addRefMap() {
-      if (this.on) {
-        this.$router.push("detail/table");
-        this.on = false;
-      } else {
-        this.$router.push("table");
-      }
+      // if (this.on) {
+      //   this.$router.push("detail/table");
+      //   this.on = false;
+      // } else {
+      //   this.$router.push("table");
+      // }
+      this.$router.push("/schema/" + this.$route.params.id + "/detail/table");
     },
     backlist() {
       this.$router.push("/schemaListContent");
@@ -263,7 +271,7 @@ export default {
     // this.$router.push("detail/markdown")
   },
   mounted() {
-    this.$router.replace(this.$router.path);
+    // this.$route.path.replace("#");
   }
 };
 </script>

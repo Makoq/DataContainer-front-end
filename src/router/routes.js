@@ -39,6 +39,7 @@ export const schema = {
     {
       path: "detail",
       component: () => import("@/components/schema/SchemaDetail"),
+      redirect: { path: "detail/markdown" },
       children: [
         {
           path: "markdown",
