@@ -1,9 +1,9 @@
-import store from "@/store/index";
-import router from "@/router/index";
+// import store from "@/store/index";
+// import router from "@/router/index";
 import axios from "@/axios/index";
 import { Message } from "element-ui";
 
-import * as types from "@/store/mutation-types";
+// import * as types from "@/store/mutation-types";
 import qs from "qs";
 var API = {
   baseUri: "api/",
@@ -56,8 +56,50 @@ var API = {
       });
     };
 
-    axios(options)
-      .then(response => {
+    // axios(options)
+    //   .then(response => {
+    //     if (response.code !== 0) {
+    //       Message({
+    //         message: response.msg,
+    //         type: "error"
+    //       });
+    //     } else {
+    //       options.success(response.data);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     //失败了，打印具体的错误
+    //     console.log(error);
+    //     if (error.status === 401) {
+    //       Message({
+    //         message: "Unauthorized",
+    //         type: "error"
+    //       });
+    //       store.commit(types.DO_LOG_OUT);
+    //       router.replace({
+    //         path: "login"
+    //       });
+    //     } else if (error.status === 404) {
+    //       Message({
+    //         message: "Not Found",
+    //         type: "error"
+    //       });
+    //       router.replace({
+    //         path: "404"
+    //       });
+    //     } else if (error.status === 500) {
+    //       router.replace({
+    //         path: "500"
+    //       });
+    //     } else {
+    //       //todo
+    //     }
+    //   });
+    axios(options).then(response => {
+      if (options.responseType === "blob") {
+        //下载文件
+        options.success(response);
+      } else {
         if (response.code !== 0) {
           Message({
             message: response.msg,
@@ -66,35 +108,8 @@ var API = {
         } else {
           options.success(response.data);
         }
-      })
-      .catch(error => {
-        //失败了，打印具体的错误
-        console.log(error);
-        if (error.status === 401) {
-          Message({
-            message: "Unauthorized",
-            type: "error"
-          });
-          store.commit(types.DO_LOG_OUT);
-          router.replace({
-            path: "login"
-          });
-        } else if (error.status === 404) {
-          Message({
-            message: "Not Found",
-            type: "error"
-          });
-          router.replace({
-            path: "404"
-          });
-        } else if (error.status === 500) {
-          router.replace({
-            path: "500"
-          });
-        } else {
-          //todo
-        }
-      });
+      }
+    });
   },
 
   doLogin(options) {

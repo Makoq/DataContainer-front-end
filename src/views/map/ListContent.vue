@@ -1,8 +1,18 @@
 <template>
   <div  >
+    <br>
+    <el-row>
+       <el-col :span="6">&nbsp;</el-col>
+      <el-col :span="12">
+        <el-card>
+          <h3>MapList has showed all Map methods..</h3>
+        </el-card>
+      </el-col>
+    </el-row>
+    <br>
       <el-row>
-          <el-col :span="20"></el-col>
-         <el-col :span="24">
+          <el-col :span="6">&nbsp;</el-col>
+         <el-col :span="12">
           <el-table
         :data="list"
         style="width:100%"
@@ -13,22 +23,17 @@
         <el-table-column
         prop="name"
         label="NAME"
-        width="180"
+        style="100%"
         >
 
         </el-table-column>
-        <el-table-column
-        prop="id"
-        label="ID"
-        width="180"
-        >
 
-        </el-table-column>
+        
 
         <el-table-column
         prop="description"
         label="Description"
-        width="180"
+       style="100%"
         >
 
         </el-table-column>
@@ -36,9 +41,13 @@
         </el-table>
   
          </el-col>
+          <el-col :span="6">&nbsp;</el-col>
        </el-row>
+       <br>
        <el-row>
-        <div>
+         <el-col :span="6">&nbsp;</el-col>
+          <el-col :span="12">
+        <el-card>
             <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
@@ -48,7 +57,9 @@
             :page-size="findDto.pageSize"
             :total="count">
              </el-pagination>
-        </div>
+        </el-card>
+          </el-col>
+        <el-col :span="6">&nbsp;</el-col>
        </el-row>
        
      
