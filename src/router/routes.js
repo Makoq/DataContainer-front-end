@@ -23,9 +23,6 @@ export const home = {
 };
 
 export const about = {
-  meta: {
-    requireAuth: true
-  },
   path: "/about",
   name: "about",
   // route level code-splitting
@@ -40,46 +37,78 @@ export const schema = {
   children: [
     {
       path: "detail",
-      component: () => import("@/components/schema/SchemaDetail")
+      component: () => import("@/components/schema/SchemaDetail"),
+      children: [
+        {
+          path: "markdown",
+          component: () => import("@/components/common/MarkDown")
+        },
+        {
+          path: "table",
+          component: () => import("@/components/common/MapAndRefactorTable")
+        },
+        {
+          path: "schematree",
+          component: () => import("@/components/schema/SchemaTree")
+        }
+      ]
     }
   ]
 };
 
 export const schemas = {
   path: "/schema",
-  component: () => import("@/views/schema/SchemaList")
+  component: () => import("@/views/schema/SchemaList"),
+  children: [
+    {
+      path: "/schemaListContent",
+      component: () => import("@/views/schema/ListContent")
+    }
+  ]
 };
 
 export const refactors = {
   path: "/refactor",
-  component: () => import("@/views/refactor/RefactorList")
+  component: () => import("@/views/refactor/RefactorList"),
+  children: [
+    {
+      path: "/refactorListContent",
+      component: () => import("@/views/refactor/ListContent")
+    }
+  ]
 };
 
 export const refactor = {
   path: "/refactor/:id",
-  component: () => import("@/views/refactor/Refactor"),
-  children: [
-    {
-      path: "detail",
-      component: () => import("@/components/refactor/RefactorDetail")
-    }
-  ]
+  component: () => import("@/views/refactor/Refactor")
+  // children: [
+  //   {
+  //     path: "detail",
+  //     component: () => import("@/components/refactor/RefactorDetail")
+  //   }
+  // ]
 };
 
 export const maps = {
   path: "/map",
-  component: () => import("@/views/map/MapList")
+  component: () => import("@/views/map/MapList"),
+  children: [
+    {
+      path: "/mapListContent",
+      component: () => import("@/views/map/ListContent")
+    }
+  ]
 };
 
 export const map = {
   path: "/map/:id",
-  component: () => import("@/views/map/Map"),
-  children: [
-    {
-      path: "detail",
-      component: () => import("@/components/map/MapDetail")
-    }
-  ]
+  component: () => import("@/views/map/Map")
+  // children: [
+  //   {
+  //     path: "detail",
+  //     component: () => import("@/components/map/MapDetail")
+  //   }
+  // ]
 };
 
 export const routes = [

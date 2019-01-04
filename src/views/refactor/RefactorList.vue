@@ -7,14 +7,19 @@
 
     <div>总数：{{count}}</div>
 
-    <div
+    <!-- <div
       v-for="(item,index) in list"
       :key="index"
     >
       {{index + "🍆"+item.name+" 🍆" +item.id}}
-    </div>
+    </div> -->
 
-    <div></div>
+    <div>
+       <router-view/>  
+       
+      
+      
+    </div>
   </div>
 </template>
 
@@ -27,7 +32,7 @@ export default {
       findDto: {
         //分页工具
         asc: false,
-        page: 0,
+        page: 1,
         pageSize: 10,
         properties: [],
         //查询条件
@@ -50,7 +55,9 @@ export default {
       }
     });
   },
-  mounted() {}
+  mounted() {
+    this.$router.push("/refactorListContent");
+  }
 };
 </script>
 

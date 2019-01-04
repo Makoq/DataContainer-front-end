@@ -22,12 +22,15 @@ axios.interceptors.request.use(
 //可以对返回的结果进行修改或者屏蔽
 axios.interceptors.response.use(
   response => {
-    return response.data;
+    if (response.config.responseType === "blob") {
+      return response;
+    } else {
+      return response.data;
+    }
   },
   error => {
     //reject 之后 接下来的promise链就破坏了，会直接跳转到.catch
     return Promise.reject(error.response);
   }
 );
-
 export default axios;

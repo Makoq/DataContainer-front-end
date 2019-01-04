@@ -1,7 +1,7 @@
 <template>
   <div>
-    detail :
-    {{entity}}
+    <!-- detail :
+    {{entity}} -->
   </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
   created() {
     this.$API.blanckRequest("map/" + this.$route.params.id, {
       success: data => {
+        console.log(data);
         this.entity = data;
       }
     });

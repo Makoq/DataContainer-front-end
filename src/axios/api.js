@@ -1,9 +1,10 @@
 import store from "@/store/index";
 import router from "@/router/index";
 import axios from "@/axios/index";
+import { Message } from "element-ui";
 
 import * as types from "@/store/mutation-types";
-
+import qs from "qs";
 var API = {
   baseUri: "api/",
 
@@ -49,34 +50,49 @@ var API = {
     }
 
     options.method = options.method.toUpperCase();
+    options.paramsSerializer = params => {
+      return qs.stringify(params, {
+        indices: false
+      });
+    };
 
     axios(options)
       .then(response => {
-        if (response.code === 0) {
-          //成功，返回数据
-          options.success(response.data);
+        if (response.code !== 0) {
+          Message({
+            message: response.msg,
+            type: "error"
+          });
         } else {
-          //后台捕获到了的异常,返回msg信息
-          console.log(response.msg);
+          options.success(response.data);
         }
       })
-      .catch(errResponse => {
-        if (errResponse.status === 401) {
+      .catch(error => {
+        //失败了，打印具体的错误
+        console.log(error);
+        if (error.status === 401) {
+          Message({
+            message: "Unauthorized",
+            type: "error"
+          });
           store.commit(types.DO_LOG_OUT);
           router.replace({
             path: "login"
           });
-        } else if (errResponse.status === 404) {
+        } else if (error.status === 404) {
+          Message({
+            message: "Not Found",
+            type: "error"
+          });
           router.replace({
             path: "404"
           });
-        } else if (errResponse.status === 500) {
+        } else if (error.status === 500) {
           router.replace({
             path: "500"
           });
         } else {
-          console.log("发生后台未捕获的错误 :\n");
-          console.log(errResponse);
+          //todo
         }
       });
   },
@@ -90,27 +106,68 @@ var API = {
   },
 
   schemaDocCount(options) {
+    // options.method = options.method.toUpperCase();
+    // if (options.method != "GET") {
+    //   console.log("该方法只能get请求");
+    // } else {
+
+    // }
     this.doRequest("schemaDoc/count", options);
   },
 
+  schemaDocRelated(options) {
+    options.method = options.method.toUpperCase();
+    if (options.method != "GET") {
+      console.log("该方法只能get请求");
+    } else {
+      this.doRequest("schemaDoc/related", options);
+    }
+  },
+
   mapCount(options) {
+    // options.method = options.method.toUpperCase();
+    // if (options.method != "GET") {
+    //   console.log("该方法只能get请求");
+    // } else {
+
+    // }
+    options.method = "GET";
     this.doRequest("map/count", options);
   },
 
   map(options) {
+    options.method = "GET";
     this.doRequest("map", options);
   },
 
   refactorCount(options) {
-    this.doRequest("refactor/count", options);
+    // options.method = options.method.toUpperCase();
+    options.method = "GET";
+    if (options.method != "GET") {
+      console.log("该方法只能get请求");
+    } else {
+      this.doRequest("refactor/count", options);
+    }
   },
 
   refactor(options) {
-    this.doRequest("refactor", options);
+    options.method = "GET";
+    if (options.method != "GET") {
+      console.log("该方法只能get请求");
+    } else {
+      this.doRequest("refactor", options);
+    }
   },
 
   blanckRequest(url, options) {
     this.doRequest(url, options);
+  },
+
+  download(options) {
+    if (options.method != "post") {
+      console.log("下载的请求option的method必须为post请求");
+    }
+    this.doRequest("file/download", options);
   }
 };
 

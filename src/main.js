@@ -4,11 +4,16 @@ import router from "./router";
 import store from "./store";
 import API from "./axios/api";
 import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+
+import mavonEditor from "mavon-editor";
+import "mavon-editor/dist/css/index.css";
 
 Vue.config.productionTip = false;
 Vue.prototype.$API = API;
 
 Vue.use(ElementUI);
+Vue.use(mavonEditor);
 
 new Vue({
   router,
