@@ -71,6 +71,11 @@
           <el-row>
             <el-button type="text" @click="download"><h4>Download</h4></el-button>
           </el-row>
+
+           <el-row>
+             <el-button type="text" @click="showInvoke=!showInvoke"><h4>Invoke</h4></el-button>
+
+          </el-row>
            
          </el-card>
 
@@ -81,22 +86,27 @@
       </el-col>
         <el-col :span="18">
           
+
+         
              <transition name="el-zoom-in-center">
                 <mark-down
                   v-show="showDetail"
                   :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"
-                ></mark-down>
-                
+                ></mark-down>           
              </transition>
             <transition name="el-zoom-out-center">
 
             
               <schema-tree v-show="showTree" :treeObj="treeObj"></schema-tree>
-             
+            </transition> 
+
+            <transition name="el-zoom-out-center">
+             <map-invoke v-show="showInvoke" :mapid="this.$route.params.id"></map-invoke>
+            </transition> 
 
 
        
-      </transition>
+          
             
 
         </el-col>
@@ -115,11 +125,13 @@
 import MarkDown from "@/components/common/MarkDown.vue";
 import SchemaTree from "@/components/schema/SchemaTree.vue";
 import MyHeader from "@/components/headers/PageHeader";
+import MapInvoke from "@/components/common/Invoke/MapInvoke";
 export default {
   data() {
     return {
       showDetail: true,
       showTree: false,
+      showInvoke: false,
       markdowndetail: "",
       entity: {
         name: null,
@@ -183,7 +195,8 @@ export default {
   components: {
     MarkDown,
     SchemaTree,
-    MyHeader
+    MyHeader,
+    MapInvoke
   }
 };
 </script>

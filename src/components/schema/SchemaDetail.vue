@@ -2,104 +2,7 @@
   <div class="page">
     <!-- detail :
     {{entity}}-->
-    <!-- <hr> -->
-    <!-- <div> -->
-      <!-- <el-card>
-        <el-row>
-          <label>id:</label>
-          <el-col :span="24">
-            <br>
-            {{entity.id}}
-          </el-col>
-        </el-row>
-      </el-card>
 
-      <el-card>
-        <el-row>
-          <label>name:</label>
-          <el-col :span="24">
-            <br>
-            {{entity.name}}
-          </el-col>
-        </el-row>
-      </el-card>
-
-      <el-card>
-        <el-row>
-          <label>description:</label>
-          <el-col :span="24">
-            <br>
-            {{entity.description}}
-          </el-col>
-        </el-row>
-      </el-card>
-
-      <el-card>
-        <el-row>
-          <label>createDate:</label>
-          <el-col :span="24">
-            <br>
-            {{entity.createDate}}
-          </el-col>
-        </el-row>
-      </el-card> -->
-
-<!-- tree -->
-      <!-- <el-card>
-        <el-row>
-          <label>udxSchema:</label>
-          <el-col :span="24">
-            <br>
-            Treename:{{treeObj.name}}
-            &nbsp;
-            description:{{treeObj.description}}
-            <br>
-            <br>udxNodeSchemas:
-            <el-tree
-              :data="treeObj.data"
-              :props="defaultProps"
-              accordion
-              @node-click="handleNodeClick"
-            ></el-tree>
-          </el-col>
-        </el-row>
-      </el-card> -->
-<!-- table -->
-      <!-- <el-card>
-        <el-row>
-          <el-col :span="12">
-            <el-table
-              ref="mapTable"
-              :data="maps"
-              style="width:100% "
-              @cell-click="(item)=>{to(item,'map')}"
-            >
-              <el-table-column prop="name" label="Map" width="180"></el-table-column>
-            </el-table>
-          </el-col>
-          <el-col :span="12">
-            <el-table ref="refactorTable" :data="refs" style="width:100%" @cell-click="(item)=>{to(item,'ref')}">
-              <el-table-column prop="name" label="Refactor" width="180"></el-table-column>
-            </el-table>
-          </el-col>
-        </el-row>
-      </el-card> -->
-
-
-<!-- markdown -->
-      <!-- <el-card>
-        <mavon-editor
-          :ishljs="true"
-          v-model="entity.detailMarkDown"
-          defaultOpen="edit"
-          :toolbarsFlag="false"
-          :subfiled="false"
-        ></mavon-editor>
-      </el-card>
- -->
-
-<!-- 
-    </div> -->
 
   <el-row>
     <el-col :span="1">&nbsp;</el-col>
@@ -128,24 +31,7 @@
           <h4 @click="addRefMap">Refactor&Map</h4>
         </el-col>
       </el-row>
-        <!-- <el-menu
-        default-active="2"
-        class="el-menu-vertical-demo"
-        router
-        >
-         <el-menu-item index="markdown">
-            <span slot="title">markdown</span>
-          </el-menu-item>
 
-          <el-menu-item index="table">
-            <span slot="title">table</span>
-          </el-menu-item>
-
-          <el-menu-item index="schematree">
-            <span slot="title">schematree</span>
-          </el-menu-item>
-      
-        </el-menu> -->
       </el-card>
        
     </el-col>
@@ -197,36 +83,17 @@ export default {
   },
   methods: {
     addmarkdown() {
-      // if (this.on) {
-      //   this.$router.push("/schema"+this.$router.params.id+"detail/markdown");
-      //   this.on = false;
-      // } else {
-      //   this.$router.push("markdown");
-      // }
-
       this.$router.push(
         "/schema/" + this.$route.params.id + "/detail/markdown"
       );
     },
     addtree() {
-      // if (this.on) {
-      //   this.$router.push("detail/schematree");
-      //   this.on = false;
-      // } else {
-      //   this.$router.push("schematree");
-      // }
       this.$router.push(
         "/schema/" + this.$route.params.id + "/detail/schematree"
       );
     },
 
     addRefMap() {
-      // if (this.on) {
-      //   this.$router.push("detail/table");
-      //   this.on = false;
-      // } else {
-      //   this.$router.push("table");
-      // }
       this.$router.push("/schema/" + this.$route.params.id + "/detail/table");
     },
     backlist() {

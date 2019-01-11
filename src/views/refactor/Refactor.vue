@@ -7,20 +7,6 @@
     <my-header></my-header>
     </div>
  
-
-    <!-- <el-card>
-      <el-button @click="showDetail=!showDetail">showDetail</el-button>
-      <el-button @click="showTree=!showTree">showTree</el-button>
-    </el-card>
-
-    <el-card>id:{{entity.id}}</el-card>
-    <el-card>name:{{entity.name}}</el-card>
-    <el-card>des:{{entity.description}}</el-card>
-    <el-card>date:{{entity.createDate}}</el-card>
-
-    <el-button @click="download">download</el-button> -->
-
-    
  
     <br>
 
@@ -35,7 +21,7 @@
            <br>
             <el-card class="datecard"><H4>CreateDate:</H4><h5>{{entity.createDate}}</h5></el-card>
          <br>
-         <el-card>
+         <el-card class="swbtn">
            
             
           <el-row>
@@ -49,7 +35,12 @@
           </el-row>
           
           <el-row>
-            <el-button type="text" @click="download"><h4>Download</h4></el-button>
+             <el-button type="text" @click="download"><h4>Download</h4></el-button>
+             
+          </el-row>
+
+          <el-row>
+            <el-button type="text" @click="showInvoke=!showInvoke"><h4>Invoke</h4></el-button>
           </el-row>
            
          </el-card>
@@ -71,6 +62,9 @@
                
              <schema-tree v-for="(item,key) in listtree" :key="key" v-show="showTree" :treeObj="item"> </schema-tree>
                
+               <transition name="el-zoom-out-center">
+             <refactorinvoke v-show="showInvoke" :refid="this.$route.params.id"></refactorinvoke>
+            </transition> 
 
         </el-col>
     </el-row>
@@ -87,12 +81,13 @@
 import MarkDown from "@/components/common/MarkDown.vue";
 import SchemaTree from "@/components/schema/SchemaTree.vue";
 import MyHeader from "@/components/headers/PageHeader";
-
+import Refactorinvoke from "@/components/common/Invoke/Refactorinvoke";
 export default {
   data() {
     return {
       showDetail: true,
       showTree: false,
+      showInvoke: false,
       entity: {
         name: null,
         description: null,
@@ -144,6 +139,7 @@ export default {
       success: data => {
         this.entity = data;
 
+        console.log(data);
         data.supportedUdxSchemas.forEach(element => {
           let res2 = this.myFetch(element);
           console.log(res2 + "得到树啦");
@@ -178,7 +174,8 @@ export default {
   components: {
     MarkDown,
     SchemaTree,
-    MyHeader
+    MyHeader,
+    Refactorinvoke
   }
 };
 </script>

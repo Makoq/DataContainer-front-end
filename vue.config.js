@@ -4,7 +4,7 @@ module.exports = {
     port: 8080,
     proxy: {
       "/api": {
-        target: "http://223.2.38.118:8081/",
+        target: "http://223.2.42.222:8081/",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -12,7 +12,7 @@ module.exports = {
         }
       },
       "/download": {
-        target: "http://223.2.38.118:8081/",
+        target: "http://223.2.42.222:8081/",
         ws: true,
         changeOrigin: true,
         pathRewrite: {

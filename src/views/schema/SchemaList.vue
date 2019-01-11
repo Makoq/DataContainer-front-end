@@ -57,20 +57,16 @@
          <el-row>
            <el-col :span="24">
              <el-card>
-               
-                <div  >
-                   <el-table
-                    :data="tableData"
-                    style="width: 100%">
-                    <el-table-column
-                      prop="title"
-                       label="schema"
-                      style="width:100%">
-                    </el-table-column>
-
-                   </el-table>
+               <div  class="clearfix">
+                  <h3>Top</h3>
                 </div>
-
+                <hr>
+                <div style="text-align:left">
+                  Recently popular schema...
+                </div><br>
+               <div v-for="(item,key) in tableData" :key="key">
+                <el-card >{{item}}</el-card>
+               </div>
              </el-card>
 
            </el-col>
@@ -100,14 +96,7 @@ export default {
         description: null,
         name: null
       },
-      tableData: [
-        {
-          title: "tif schema1"
-        },
-        {
-          title: "tif schema2"
-        }
-      ]
+      tableData: Array()
     };
   },
   methods: {},
@@ -127,6 +116,15 @@ export default {
   },
   mounted() {
     this.$router.push("/schemaListContent");
+    this.$axios.get("api/schemaDoc/getTop10").then(rsp => {
+      console.log("respppp ");
+      console.log(rsp.data);
+      rsp.data.forEach(element => {
+        this.tableData.push(element.name);
+      });
+      // this.tableData.push(rsp.data.name)
+      console.log(this.tableData);
+    });
   },
   components: {
     MyHeader

@@ -123,6 +123,7 @@ export const routes = [
   schema,
   refactor,
   map,
+
   page500,
   page404
 ];
