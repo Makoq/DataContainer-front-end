@@ -9,9 +9,10 @@
           &nbsp;
           description:{{treeObj.description}}
           <br>
-          <br>udxNodeSchemas:
-          
-          <el-tree  :data="treeData" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
+          <br>
+
+          udxNodeSchemas:
+          <el-tree :data="treeData" :props="defaultProps" accordion @node-click="handleNodeClick"></el-tree>
         </el-col>
       </el-row>
     </el-card>
@@ -32,8 +33,6 @@ export default {
   },
   computed: {
     treeData() {
-      console.log("mapid");
-      console.log(this.treeObj.udxNodeSchemas);
       return this.gernerateTree(this.treeObj.udxNodeSchemas);
     }
   },

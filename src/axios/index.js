@@ -2,7 +2,6 @@ import axios from "axios";
 import store from "@/store/index";
 
 axios.defaults.timeout = 50000;
-
 //http request拦截器
 axios.interceptors.request.use(
   config => {
@@ -17,7 +16,6 @@ axios.interceptors.request.use(
     return Promise.reject(err);
   }
 );
-
 //http response 拦截器
 //可以对返回的结果进行修改或者屏蔽
 axios.interceptors.response.use(

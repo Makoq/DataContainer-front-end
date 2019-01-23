@@ -12,7 +12,7 @@
                                 
                             </el-step>
                             
-                            <el-step title="Invoke Map" description="run refactor online.."> 
+                            <el-step title="Invoke Refactor" description="run refactor online.."> 
                             </el-step>
                             <el-step title="Download" description="download the data online..">  
                             </el-step>
@@ -31,7 +31,6 @@
                     <div slot="tip" class="el-upload__tip">Please upload refactor files.</div>
                     </el-upload>
                      </el-card>
-
 
                 </el-row>
 
@@ -57,7 +56,7 @@
                 <el-row>
                  <el-card>
 
-                    <!-- <el-input placeholder="none result" v-model="runresult" :disabled="true"></el-input><br><br> -->
+                 
                     <el-button size="small" 
                     type="primary"
                      @click="downloadmap">
@@ -71,63 +70,6 @@
 
 
         </el-row>
-
-
-     
-
-
-     <!-- <el-row>
-          <h4>Input Data</h4>
-          <el-upload
-            class="upload-demo"
-            action="/api/file/upload/run"
-            :on-success="uploadSuccess"
-          >
-          <el-button size="small" type="primary"><i class="el-icon-upload el-icon--right"></i>choose</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
-
-     </el-row> -->
-
-      <!-- <el-row>
-          <el-card  >
-              <div>{{methodjson}}</div>
-          </el-card>
-      </el-row>
-
-      <el-row>
-          <el-card  >
-              <div>{{downloadurl}}</div>
-          </el-card>
-      </el-row> -->
-
-        <!-- <el-row>
-          <el-card  >
-             <el-radio-group v-for="(item,key) in downloadurl" :key="key" v-model="redioitem" @change="changeradio">
-                 <el-radio :label="'OutPutData'+(key+1)+'.xml'"></el-radio>
-             </el-radio-group>
-          </el-card>
-      </el-row>
-
-
-     <el-row>
-       <br>
-       <el-button 
-       type="success" 
-       @click="runMap"
-        
-        v-loading.fullscreen.lock="fullscreenLoading"
-       >run</el-button>
-     </el-row>
-
-
-     <el-row>
-       <br>
-       <el-input placeholder="none result" v-model="runresult" :disabled="true"></el-input>
-        <el-button type="success" @click="downloadmap">download</el-button>
-     </el-row>
-     -->
-      
     
     </el-card>
   </div>
@@ -168,7 +110,7 @@ export default {
           message: "数据上传成功成功",
           type: "success"
         });
-        console.log("input  " + this.refdata.input);
+
         if (this.active++ > 2) this.active = 0;
       } else {
         this.$message({
@@ -185,7 +127,6 @@ export default {
     },
 
     runRef() {
-      console.log(this.refdata);
       if (this.refdata.input == "") {
         this.$message("请先上传数据");
       } else {
@@ -243,36 +184,20 @@ export default {
     },
     changeradio(value) {
       this.downloadradio = value;
-      console.log(this.downloadradio);
     }
   },
   mounted() {
-    console.log("id**" + this.refid);
     this.$axios
-      .get("api/refactor/" + this.refid + "/getMethod", {
-        // params:{
-        //     id:this.refid
-        // }
-      })
+      .get("api/refactor/" + this.refid + "/getMethod")
       .then(res => {
-        //    console.log("dd "+res.data)
         this.refmethod = res.data;
 
         this.methodjson = this.$x2js.xml2js(res.data);
 
-        //对Array的forEach
-        // this.methodjson.RefactorMethodInfo.Method.forEach(element => {
-        //     this.refdata.method.push(element._name)
-        // });
-
         // 拿到第一个method
         this.refdata.method = this.methodjson.RefactorMethodInfo.Method[0]._name;
       })
-      .then(() => {
-        // console.log(this.methodjson);
-        //  console.log(this.refdata.method);
-        //   console.log(this.refdata.input);
-      });
+      .then(() => {});
   }
 };
 </script>

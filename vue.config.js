@@ -1,10 +1,11 @@
 module.exports = {
+  baseUrl: "./",
   devServer: {
     host: "0.0.0.0",
     port: 8080,
     proxy: {
       "/api": {
-        target: "http://223.2.42.222:8081/",
+        target: "http://172.21.212.85:8081/",
         ws: true,
         changeOrigin: true,
         pathRewrite: {
@@ -12,7 +13,7 @@ module.exports = {
         }
       },
       "/download": {
-        target: "http://223.2.42.222:8081/",
+        target: "http://172.21.212.85:8081/",
         ws: true,
         changeOrigin: true,
         pathRewrite: {

@@ -1,81 +1,54 @@
 <template>
   <div class="page">
-    <!-- 三个List 应该是可以抽象提取出来的（因为目前的筛选条件是一致的），但是我还是倾向于做成3个List，展现的形式不同，筛选的条件不同。
-    <div>筛选条件:</div>
-
-    <div>分页工具：</div>
-
-    <div>总数：{{count}}</div> -->
-
-    <!-- <div
-      v-for="(item,index) in list"
-      :key="index"
-    >
-      {{index + "🍆"+item.name+" 🍆" +item.id}}
-    </div> -->
-    <!-- <el-card>
-      
-    </el-card> -->
-
-   <div class="sheader">
-    <my-header></my-header>
+    <div class="sheader">
+      <my-header></my-header>
     </div>
- 
-    <el-row >
 
-      <el-col :span="3">
-        &nbsp;
-      </el-col>
+    <el-row>
+      <el-col :span="3">&nbsp;</el-col>
 
       <el-col :span="12">
-         <transition name="el-zoom-in-top">
-          <router-view />
-         </transition>
-        
-
+        <transition name="el-zoom-in-top">
+          <router-view/>
+        </transition>
       </el-col>
 
       <el-col :span="6" class="asidecard">
- <br>
+        <br>
         <el-row>
           <el-col :span="24">
             <el-card>
-                <div  class="clearfix">
-                  <h3>introduce</h3>
-                </div>
-                <hr>
-                <div style="text-align:left">
-                  schema is used for ...在数据容器拥有映射服务和重构服务之后，我们便拥有了一系列的结构化数据表达模型。那么我们基于结构化数据能够做点什么呢。
-                </div>
-                 <el-button style="float:right; padding: 3px 0" type="text"><h5>LearnMore</h5></el-button>
-
+              <div class="clearfix">
+                <h3>introduce</h3>
+              </div>
+              <hr>
+              <div
+                style="text-align:left"
+              >通用数据展示首页，是对一系列可用数据的展示首页，在本页面，用户可以发现和探索不同的数据名称，发布者以及其数据的描述信息等内容...</div>
+              <el-button style="float:right; padding: 3px 0" type="text">
+                <h5>LearnMore</h5>
+              </el-button>
             </el-card>
-
           </el-col>
         </el-row>
         <br>
-         <el-row>
-           <el-col :span="24">
-             <el-card>
-               <div  class="clearfix">
-                  <h3>Top</h3>
-                </div>
-                <hr>
-                <div style="text-align:left">
-                  Recently popular schema...
-                </div><br>
-               <div v-for="(item,key) in tableData" :key="key">
-                <el-card >{{item}}</el-card>
-               </div>
-             </el-card>
-
-           </el-col>
-         </el-row>
-
+        <el-row>
+          <el-col :span="24">
+            <el-card>
+              <div class="clearfix">
+                <h3>Top</h3>
+              </div>
+              <hr>
+              <div style="text-align:left">Recently popular schema...</div>
+              <br>
+              <div v-for="(item,key) in tableData" :key="key">
+                <el-card>{{item}}</el-card>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
       </el-col>
-
     </el-row>
-
   </div>
 </template>
 
@@ -104,7 +77,7 @@ export default {
     this.$API.schemaDocCount({
       success: count => {
         this.count = count;
-        // console.log(this.findDto);
+
         this.$API.schemaDoc({
           params: this.findDto,
           success: data => {
@@ -117,13 +90,10 @@ export default {
   mounted() {
     this.$router.push("/schemaListContent");
     this.$axios.get("api/schemaDoc/getTop10").then(rsp => {
-      console.log("respppp ");
-      console.log(rsp.data);
       rsp.data.forEach(element => {
         this.tableData.push(element.name);
       });
       // this.tableData.push(rsp.data.name)
-      console.log(this.tableData);
     });
   },
   components: {

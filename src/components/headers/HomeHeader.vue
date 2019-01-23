@@ -1,13 +1,11 @@
 <template>
   <div class="header">
-
-    <div class="logo">OpenGMS </div>
+    <div class="logo">OpenGMS</div>
     <div class="right-list">
       <a class="right-list-item">Schema</a>
       <a class="right-list-item">Map</a>
       <a class="right-list-item">Refactor</a>
     </div>
-
   </div>
 </template>
 

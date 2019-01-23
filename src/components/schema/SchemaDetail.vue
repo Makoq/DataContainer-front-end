@@ -1,57 +1,48 @@
 <template>
   <div class="page">
     <!-- detail :
-    {{entity}}-->
+    {{entity}} -->
+    <el-row>
+      <el-col :span="1">&nbsp;</el-col>
+      <el-col :span="3">
+        <br>
+        <el-card>
+          <el-row>
+            <el-col :span="24">
+              <h4 @click="addmarkdown">SchemaDetail</h4>
+            </el-col>
+          </el-row>
+          <br>
 
+          <el-row>
+            <el-col :span="24">
+              <h4 @click="addtree">SchemaTree</h4>
+            </el-col>
+          </el-row>
+          <br>
+          <el-row>
+            <el-col :span="24">
+              <h4 @click="addRefMap">Refactor&Map</h4>
+            </el-col>
+          </el-row>
+        </el-card>
+      </el-col>
+      <el-col :span="1">&nbsp;</el-col>
 
-  <el-row>
-    <el-col :span="1">&nbsp;</el-col>
-    <el-col :span="3">
-     <br>
-      <el-card>
-      <el-row>
-        <el-col :span="24">
+      <el-col :span="18">
+        <br>
+        <!-- <transition  name="el-zoom-in-center"  > -->
+          <router-view
+            :refs="refs"
+            :maps="maps"
+            :treeObj="treeObj"
+            :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"
+          ></router-view>
+        <!-- </transition> -->
+      </el-col>
+    </el-row>
 
-          <!-- <router-link to="markdown" ><h4>markdown</h4></router-link> -->
-          <h4 @click="addmarkdown">SchemaDetail</h4>
-        </el-col>
-      </el-row>
-      <br>
-
-      <el-row>
-        <el-col :span="24">
-          <!-- <router-link :to="{path:'schematree'}"><h4>tree</h4></router-link> -->
-          <h4 @click="addtree">SchemaTree</h4>
-        </el-col>
-      </el-row>
-      <br>
-      <el-row>
-        <el-col :span="24">
-          <!-- <router-link :to="{path:'table'}"><h4>table</h4></router-link> -->
-          <h4 @click="addRefMap">Refactor&Map</h4>
-        </el-col>
-      </el-row>
-
-      </el-card>
-       
-    </el-col>
-    <el-col :span="1">&nbsp;</el-col>
-
-
-    <el-col :span="18">
-       <br>
-      <transition name="el-zoom-in-top">
-      <router-view :refs="refs" :maps="maps" :treeObj="treeObj" :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"  ></router-view>
-      </transition>
-    </el-col>
-  </el-row>
-
-  <el-button class="backbtn" @click="backlist" icon="el-icon-arrow-left" circle></el-button>
-
-
-
-
-
+    <el-button class="backbtn" @click="backlist" icon="el-icon-arrow-left" circle></el-button>
   </div>
 </template>
 
@@ -123,7 +114,6 @@ export default {
               this.maps.push(el);
             });
             refactors.forEach(el => {
-              console.log(el);
               if (el == null) {
                 //TODO当refactor或map为空时，在表格里的显示
               } else {

@@ -1,106 +1,72 @@
 <template>
-  <div  >
+  <div>
     <el-card>
-     <h1>Map Serviceds</h1>
-     <hr>
-  <el-row>
-    <el-col :span="5">
-        <div style="height:450px">
-                        <el-steps :active="active" finish-status="success" direction="vertical">
-                            <el-step title="Choose Map Type" description="upload refactor data.."> 
-                                
-                            </el-step>
-                            <el-step title="Input Data" description="upload refactor data.."> 
-                                
-                            </el-step>
-                            
-                            <el-step title="Invoke Map" description="run refactor online.."> 
-                            </el-step>
-                            <el-step title="Download" description="download the data online..">  
-                            </el-step>
-                        </el-steps>
-                    </div>
-    </el-col>
-    <el-col :span="19">
+      <h1>Map Services</h1>
+      <hr>
       <el-row>
-        <el-card>
-          <el-radio-group v-model="defaultRadio" class="maptyperadio" @change="changeType">
-          <el-radio-button label="src2udx" >Src Data to Udx Data</el-radio-button>
-          <el-radio-button label="udx2src"  >Udx Data to Src Data</el-radio-button>
-        </el-radio-group>
-        </el-card>
-     </el-row>
+        <el-col :span="5">
+          <div style="height:450px">
+            <el-steps :active="active" finish-status="success" direction="vertical">
+              <el-step title="Choose Map Type" description="upload refactor data.."></el-step>
+              <el-step title="Input Data" description="upload refactor data.."></el-step>
 
-      <el-row>
-         <el-card>
-          <el-upload
-            class="upload-demo"
-            action="/api/file/upload/run"
-            :on-success="uploadSuccess"
-          >
-          <el-button size="small" type="primary"><i class="el-icon-upload el-icon--right"></i>&nbsp;upload</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-          </el-upload>
-         </el-card>
-        </el-row>
-
-        <el-row>
+              <el-step title="Invoke Map" description="run map online.."></el-step>
+              <el-step title="Download" description="download the data online.."></el-step>
+            </el-steps>
+          </div>
+        </el-col>
+        <el-col :span="19">
+          <el-row>
             <el-card>
-                    <el-button 
-                    size="small" 
-                       type="primary"
-                    @click="runMap"
-                      
-                      v-loading.fullscreen.lock="fullscreenLoading"
-                    >
-                     <i class="el-icon-refresh"></i>&nbsp;
-                    run</el-button><br><br>
-                     <el-input placeholder="none result" v-model="runresult" :disabled="true"></el-input>
+              <el-radio-group v-model="defaultRadio" class="maptyperadio" @change="changeType">
+                <el-radio-button label="src2udx">Src Data to Udx Data</el-radio-button>
+                <el-radio-button label="udx2src">Udx Data to Src Data</el-radio-button>
+              </el-radio-group>
             </el-card>
-         </el-row>
-
-         <el-row>
-            <el-card>
-           
-              <el-button  
-              size="small" 
-              type="primary"
-              @click="downloadmap">
-               <i class="el-icon-sold-out"></i>&nbsp;
-              download</el-button>
-              </el-card>
           </el-row>
 
-        
+          <el-row>
+            <el-card>
+              <el-upload
+                class="upload-demo"
+                action="/api/file/upload/run"
+                :on-success="uploadSuccess"
+              >
+                <el-button size="small" type="primary">
+                  <i class="el-icon-upload el-icon--right"></i>&nbsp;upload
+                </el-button>
+                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+              </el-upload>
+            </el-card>
+          </el-row>
 
+          <el-row>
+            <el-card>
+              <el-button
+                size="small"
+                type="primary"
+                @click="runMap"
+                v-loading.fullscreen.lock="fullscreenLoading"
+              >
+                <i class="el-icon-refresh"></i>&nbsp;
+                run
+              </el-button>
+              <br>
+              <br>
+              <el-input placeholder="none result" v-model="runresult" :disabled="true"></el-input>
+            </el-card>
+          </el-row>
 
-
-    </el-col>
-  </el-row>
-
-     
-
-     
-     <!-- <el-row>
-       <h4>Custom Output Data Name</h4>
-       <el-col :span="12">
-          <el-input v-model="outname" placeholder="Output Data Name"></el-input>
-       </el-col>
-      <el-col :span="12">
-        <el-switch
-        v-model="switchRadio"
-        active-text="Defalt"
-        inactive-text="Custom">
-      </el-switch>
-      </el-col>
-       
-     </el-row> -->
-     
-
-     
-    
-      
-    
+          <el-row>
+            <el-card>
+              <el-button size="small" type="primary" @click="downloadmap">
+                <i class="el-icon-sold-out"></i>&nbsp;
+                download
+              </el-button>
+            </el-card>
+          </el-row>
+        </el-col>
+      </el-row>
     </el-card>
   </div>
 </template>
@@ -166,8 +132,6 @@ export default {
               });
               if (this.active++ > 3) this.active = 1;
             }
-            console.log(resp.msg);
-            console.log(resp.data);
           });
       }
     },
@@ -195,9 +159,7 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.mapid);
-  }
+  mounted() {}
 };
 </script>
 <style scoped>

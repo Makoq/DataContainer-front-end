@@ -1,69 +1,43 @@
 <template>
-  <div  >
-     <br>
+  <div>
+    <br>
     <el-row>
-       <el-col :span="6">&nbsp;</el-col>
+      <el-col :span="6">&nbsp;</el-col>
       <el-col :span="12">
         <el-card>
           <h3>RefactorList has showed all Refactor methods..</h3>
         </el-card>
       </el-col>
     </el-row>
-         <br>
-      <el-row>
-          <el-col :span="6">&nbsp;</el-col>
-         <el-col :span="12">
-          <el-table
-        :data="list"
-        style="width:100%"
-        @row-click="detail"
-        stripe
+    <br>
+    <el-row>
+      <el-col :span="6">&nbsp;</el-col>
+      <el-col :span="12">
+        <el-table :data="list" style="width:100%" @row-click="detail" stripe>
+          <el-table-column prop="name" label="NAME" style="100%"></el-table-column>
 
-        >
-        <el-table-column
-        prop="name"
-        label="NAME"
-        style="100%"
-        >
-
-        </el-table-column>
-
-        
-
-        <el-table-column
-        prop="description"
-        label="Description"
-       style="100%"
-        >
-
-        </el-table-column>
-
+          <el-table-column prop="description" label="Description" style="100%"></el-table-column>
         </el-table>
-  
-         </el-col>
-          <el-col :span="6">&nbsp;</el-col>
-       </el-row>
-       <br>
-       <el-row>
-         <el-col :span="6">&nbsp;</el-col>
-          <el-col :span="12">
+      </el-col>
+      <el-col :span="6">&nbsp;</el-col>
+    </el-row>
+    <br>
+    <el-row>
+      <el-col :span="6">&nbsp;</el-col>
+      <el-col :span="12">
         <el-card>
-            <el-pagination
+          <el-pagination
             @size-change="handleSizeChange"
             @current-change="handleCurrentChange"
             layout="prev, pager, next"
             :current-page="findDto.page"
-             
             :page-size="findDto.pageSize"
-            :total="count">
-             </el-pagination>
+            :total="count"
+          ></el-pagination>
         </el-card>
-          </el-col>
-        <el-col :span="6">&nbsp;</el-col>
-       </el-row>
-       
-     
-
+      </el-col>
+      <el-col :span="6">&nbsp;</el-col>
+    </el-row>
   </div>
 </template>
 <script>
@@ -86,20 +60,15 @@ export default {
   },
   methods: {
     detail(row) {
-      //   console.log(row.id)
       this.$router.push("refactor/" + row.id);
     },
     handleCurrentChange(currentpage) {
-      //   console.log(currentpage)
-
       this.findDto.page = currentpage;
 
-      // console.log(this.findDto.page)
       this.$API.schemaDoc({
         params: this.findDto,
 
         success: data => {
-          console.log(data.content);
           this.list = data.content;
         }
       });

@@ -43,7 +43,6 @@ export default {
         this.$router.push({ path: "/map/" + item.id });
       } else {
         this.$router.push({ path: "/refactor/" + item.id });
-        console.log(item.id);
       }
     }
   },

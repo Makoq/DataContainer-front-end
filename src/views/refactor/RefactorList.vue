@@ -1,24 +1,11 @@
 <template>
   <div class="page">
-    <!-- 三个List 应该是可以抽象提取出来的（因为目前的筛选条件是一致的），但是我还是倾向于做成3个List，展现的形式不同，筛选的条件不同。
-    <div>筛选条件:</div>
-
-    <div>分页工具：</div>
-
-    <div>总数：{{count}}</div> -->
-
-    <!-- <div
-      v-for="(item,index) in list"
-      :key="index"
-    >
-      {{index + "🍆"+item.name+" 🍆" +item.id}}
-    </div> -->
     <div class="sheader">
-    <my-header></my-header>
+      <my-header></my-header>
     </div>
 
     <div>
-       <router-view/>   
+      <router-view/>
     </div>
   </div>
 </template>

@@ -1,38 +1,29 @@
 <template>
-  <div >
-     
-        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" >
+  <div>
+    <el-menu 
+    :default-active="activeIndex" 
+    class="el-menu-demo" 
+    mode="horizontal"
+    
+    router>
+ 
       
-           
-
-                <el-menu-item  index="15" >OpenGMS</el-menu-item>
-             
-
-              
-
-                <el-menu-item index="1">处理中心</el-menu-item>
-                 
-
-
-                 
-                <el-submenu index="2">
-                    <template slot="title">我的工作台</template>
-                    <el-menu-item index="2-1">选项1</el-menu-item>
-                    <el-menu-item index="2-2">选项2</el-menu-item>
-                    <el-menu-item index="2-3">选项3</el-menu-item>                
-                </el-submenu>
-            
-
-
-                 
-                 
-                
-                 
-                 <el-menu-item index="5" class="log"> 登录 </el-menu-item>
-              
-        
-        </el-menu>
+      <el-menu-item index="/"><strong>OpenGMS</strong>
       
+      
+      
+      
+      </el-menu-item>
+
+      <el-menu-item index="schema">Schema Service</el-menu-item>
+      <el-menu-item index="map">Mapping Service</el-menu-item>
+      <el-menu-item index="refactor">Refactor Service</el-menu-item>
+       <el-menu-item index="4">Visualization Service</el-menu-item>
+      
+
+       
+      <el-menu-item index="5" class="log">SignIn</el-menu-item>
+    </el-menu>
   </div>
 </template>
 <script>
@@ -44,6 +35,9 @@ export default {
   }
 };
 </script>
->
+
 <style>
+.log {
+  left: 30%;
+}
 </style>

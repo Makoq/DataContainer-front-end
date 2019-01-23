@@ -1,31 +1,24 @@
 <template>
-  <div >
-     <el-card>
-         <!-- {{this.list}} -->
-         <el-row>
-             <el-col :span="24" style="text-align:left">
-                <h1  @click="to">  {{this.list.name}} </h1>
-                 
-             </el-col>
+  <div>
+    <el-card>
+      <!-- {{this.list}} -->
+      <el-row>
+        <el-col :span="24" style="text-align:left">
+          <h1 @click="to">{{this.list.name}}</h1>
+        </el-col>
+      </el-row>
 
-         </el-row>
-
-         <el-row>
-             <el-col :span="24" style="text-align:left">
-                 <h4 >by lanxv</h4>
-             </el-col>
-         </el-row>
-         <el-row>
-             <el-col :span="24" style="text-align:left">
-                 <span>{{this.list.description}}</span>
-             </el-col>
-
-         </el-row>
-           
-         
-
-     </el-card>
-
+      <el-row>
+        <el-col :span="24" style="text-align:left">
+          <h4>by lanxv</h4>
+        </el-col>
+      </el-row>
+      <el-row>
+        <el-col :span="24" style="text-align:left">
+          <span>{{this.list.description}}</span>
+        </el-col>
+      </el-row>
+    </el-card>
   </div>
 </template>
 <script>
