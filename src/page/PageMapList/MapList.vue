@@ -1,11 +1,11 @@
 <template>
-  <div class="page">
+  <div>
     <div class="sheader">
       <my-header></my-header>
     </div>
 
-    <div>
-      <router-view/>
+    <div class="maplist">
+      <router-view />
     </div>
   </div>
 </template>
@@ -42,7 +42,6 @@ export default {
       this.$API.schemaDoc({
         params: findDto,
         success: data => {
-         
           this.entity = data.content;
         }
       });
@@ -71,7 +70,7 @@ export default {
 </script>
 
 <style scoped>
-.page {
+.maplist {
   background-color: rgb(30, 155, 155);
   height: 1400px;
 }

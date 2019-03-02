@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div v-for="(item,index) in list" :key="index">
-      <br>
+    <div v-for="(item, index) in list" :key="index">
+      <br />
       <list-card :list="item"></list-card>
     </div>
 
-    <br>
+    <br />
     <el-row>
       <el-card>
         <el-pagination
@@ -21,7 +21,7 @@
   </div>
 </template>
 <script>
-import ListCard from "@/views/schema/SchemaListCard";
+import ListCard from "@/page/PageSchemaDoc/SchemaListCard";
 export default {
   data() {
     return {
@@ -74,7 +74,7 @@ export default {
     });
   },
   mounted() {
-    this.$router.push("/schemaListContent");
+    // this.$router.push("/schemaListContent");
   },
   components: {
     ListCard
@@ -83,5 +83,4 @@ export default {
 </script>
 >
 
-<style>
-</style>
+<style></style>

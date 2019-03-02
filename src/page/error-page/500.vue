@@ -8,7 +8,13 @@
         <p class="error500-body-con-message">Oops! the server is wrong</p>
         <div class="error500-btn-con">
           <button @click="goHome" style="width: 200px;" plain>返回首页</button>
-          <button @click="backPage" style="width: 200px;margin-left: 40px;" plain>返回上一页</button>
+          <button
+            @click="backPage"
+            style="width: 200px;margin-left: 40px;"
+            plain
+          >
+            返回上一页
+          </button>
         </div>
       </div>
     </div>

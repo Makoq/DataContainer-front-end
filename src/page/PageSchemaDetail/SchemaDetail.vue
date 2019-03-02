@@ -5,21 +5,21 @@
     <el-row>
       <el-col :span="1">&nbsp;</el-col>
       <el-col :span="3">
-        <br>
+        <br />
         <el-card>
           <el-row>
             <el-col :span="24">
               <h4 @click="addmarkdown">SchemaDetail</h4>
             </el-col>
           </el-row>
-          <br>
+          <br />
 
           <el-row>
             <el-col :span="24">
               <h4 @click="addtree">SchemaTree</h4>
             </el-col>
           </el-row>
-          <br>
+          <br />
           <el-row>
             <el-col :span="24">
               <h4 @click="addRefMap">Refactor&Map</h4>
@@ -30,19 +30,26 @@
       <el-col :span="1">&nbsp;</el-col>
 
       <el-col :span="18">
-        <br>
+        <br />
         <!-- <transition  name="el-zoom-in-center"  > -->
-          <router-view
-            :refs="refs"
-            :maps="maps"
-            :treeObj="treeObj"
-            :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"
-          ></router-view>
+        <router-view
+          :refs="refs"
+          :maps="maps"
+          :treeObj="treeObj"
+          :detailMarkdown="
+            markdowndetail != null ? markdowndetail : 'detail is null'
+          "
+        ></router-view>
         <!-- </transition> -->
       </el-col>
     </el-row>
 
-    <el-button class="backbtn" @click="backlist" icon="el-icon-arrow-left" circle></el-button>
+    <el-button
+      class="backbtn"
+      @click="backlist"
+      icon="el-icon-arrow-left"
+      circle
+    ></el-button>
   </div>
 </template>
 

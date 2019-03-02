@@ -4,7 +4,7 @@ export const page404 = {
   meta: {
     title: "404-页面不存在"
   },
-  component: () => import("@/views/error-page/404")
+  component: () => import("@/page/error-page/404")
 };
 
 export const page500 = {
@@ -13,30 +13,30 @@ export const page500 = {
     title: "500-服务端错误"
   },
   name: "error-500",
-  component: () => import("@/views/error-page/500")
+  component: () => import("@/page/error-page/500")
 };
 
 export const home = {
   path: "/",
   name: "home",
-  component: () => import("@/views/HomePage")
+  component: () => import("@/page/HomePage")
 };
 
 export const about = {
   path: "/about",
   name: "about",
 
-  component: () => import(/* webpackChunkName: "about" */ "@/views/About")
+  component: () => import(/* webpackChunkName: "about" */ "@/page/About")
 };
 
 export const schema = {
   path: "/schema/:id",
-  component: () => import("@/views/schema/Schema"),
+  component: () => import("@/page/PageSchemaDetail/Schema"),
 
   children: [
     {
       path: "detail",
-      component: () => import("@/components/schema/SchemaDetail"),
+      component: () => import("@/page/PageSchemaDetail/SchemaDetail"),
       redirect: { path: "detail/markdown" },
       children: [
         {
@@ -49,7 +49,7 @@ export const schema = {
         },
         {
           path: "schematree",
-          component: () => import("@/components/schema/SchemaTree")
+          component: () => import("@/components/trees/SchemaTree")
         }
       ]
     }
@@ -58,46 +58,47 @@ export const schema = {
 
 export const schemas = {
   path: "/schema",
-  component: () => import("@/views/schema/SchemaList"),
+  component: () => import("@/page/PageSchemaDoc/SchemaList"),
   redirect: { path: "/schemaListContent" },
   children: [
     {
       path: "/schemaListContent",
-      component: () => import("@/views/schema/ListContent")
+      component: () => import("@/page/PageSchemaDoc/ListContent")
     }
   ]
 };
 
 export const refactors = {
   path: "/refactor",
-  component: () => import("@/views/refactor/RefactorList"),
+  component: () => import("@/page/PageRefactorList/RefactorList"),
   children: [
     {
       path: "/refactorListContent",
-      component: () => import("@/views/refactor/ListContent")
+      component: () => import("@/page/PageRefactorList/ListContent")
     }
   ]
 };
 
 export const refactor = {
   path: "/refactor/:id",
-  component: () => import("@/views/refactor/Refactor")
+  component: () => import("@/page/PageRefactorService/Refactor")
 };
 
 export const maps = {
   path: "/map",
-  component: () => import("@/views/map/MapList"),
+  component: () => import("@/page/PageMapList/MapList"),
+
   children: [
     {
       path: "/mapListContent",
-      component: () => import("@/views/map/ListContent")
+      component: () => import("@/page/PageMapList/ListContent")
     }
   ]
 };
 
 export const map = {
   path: "/map/:id",
-  component: () => import("@/views/map/Map")
+  component: () => import("@/page/PageMapService/Map")
 };
 
 export const routes = [

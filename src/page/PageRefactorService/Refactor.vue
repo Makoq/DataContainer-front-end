@@ -4,30 +4,30 @@
       <my-header></my-header>
     </div>
 
-    <br>
+    <br />
 
     <el-row>
       <el-col :span="1">&nbsp;</el-col>
       <el-col :span="3">
         <el-card>
           <H4>NAME:</H4>
-          {{entity.name}}
+          {{ entity.name }}
         </el-card>
-        <br>
+        <br />
         <el-card class="datecard">
           <H4>CreateDate:</H4>
-          <h5>{{entity.createDate}}</h5>
+          <h5>{{ entity.createDate }}</h5>
         </el-card>
-        <br>
-        <el-card>
+        <br />
+        <el-card class="swbtn">
           <el-row>
-            <el-button type="text" @click="showDetail=!showDetail">
+            <el-button type="text" @click="showDetail = !showDetail">
               <h4>ShowDetail</h4>
             </el-button>
           </el-row>
 
           <el-row>
-            <el-button type="text" @click="showTree=!showTree">
+            <el-button type="text" @click="showTree = !showTree">
               <h4>ShowTree</h4>
             </el-button>
           </el-row>
@@ -39,7 +39,7 @@
           </el-row>
 
           <el-row>
-            <el-button type="text" @click="showInvoke=!showInvoke">
+            <el-button type="text" @click="showInvoke = !showInvoke">
               <h4>Invoke</h4>
             </el-button>
           </el-row>
@@ -50,35 +50,51 @@
         <transition name="el-zoom-in-center">
           <mark-down
             v-show="showDetail"
-            :detailMarkdown="markdowndetail!=null?markdowndetail:'detail is null'"
+            :detailMarkdown="
+              markdowndetail != null ? markdowndetail : 'detail is null'
+            "
           ></mark-down>
         </transition>
-        <transition name="el-zoom-out-center">
-          <schema-tree v-show="showTree" :treeObj="treeObj"></schema-tree>
-        </transition>
+
+        <schema-tree
+          v-for="(item, key) in listtree"
+          :key="key"
+          v-show="showTree"
+          :treeObj="item"
+        ></schema-tree>
 
         <transition name="el-zoom-out-center">
-          <map-invoke v-show="showInvoke" :mapid="this.$route.params.id"></map-invoke>
+          <refactorinvoke
+            v-show="showInvoke"
+            :refid="this.$route.params.id"
+          ></refactorinvoke>
         </transition>
       </el-col>
     </el-row>
     <!-- btn back to home -->
-    <el-button class="backbtn" @click="backlist" icon="el-icon-arrow-left" circle></el-button>
+    <el-button
+      class="backbtn"
+      @click="backlist"
+      icon="el-icon-arrow-left"
+      circle
+    ></el-button>
+
+    <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
 import MarkDown from "@/components/common/MarkDown.vue";
-import SchemaTree from "@/components/schema/SchemaTree.vue";
+import SchemaTree from "@/components/trees/SchemaTree.vue";
 import MyHeader from "@/components/headers/PageHeader";
-import MapInvoke from "@/components/common/Invoke/MapInvoke";
+import Refactorinvoke from "@/components/common/Invoke/Refactorinvoke";
 export default {
   data() {
     return {
       showDetail: true,
       showTree: false,
-      showInvoke: false,
       markdowndetail: "",
+      showInvoke: false,
       entity: {
         name: null,
         description: null,
@@ -88,7 +104,8 @@ export default {
         name: null,
         description: null,
         udxNodeSchemas: []
-      }
+      },
+      listtree: []
     };
   },
   methods: {
@@ -110,29 +127,28 @@ export default {
         }
       });
     },
+    shotree() {},
+    async myFetch(element) {
+      let res = await fetch("/api/schemaDoc/" + element + "/getSchema");
+      let data = await res.json();
+      this.listtree.push(data.data);
+
+      return data;
+    },
     backlist() {
       this.$router.push("/schemaListContent");
     }
   },
   created() {
-    this.$API.blanckRequest("map/" + this.$route.params.id, {
+    this.$API.blanckRequest("refactor/" + this.$route.params.id, {
       success: data => {
         this.entity = data;
         this.markdowndetail = data.detailMarkDown;
 
-        this.$API.blanckRequest(
-          "schemaDoc/" + this.entity.supportedUdxSchema + "/getSchema",
-          {
-            success: data => {
-              if (data == null) {
-                console.log("null datsa");
-              }
-              this.treeObj.name = data.name;
-              this.treeObj.description = data.description;
-              this.treeObj.udxNodeSchemas = data.udxNodeSchemas;
-            }
-          }
-        );
+        // data.supportedUdxSchemas.forEach(element => {
+        //   // let res2 = this.myFetch(element);
+
+        // });
       }
     });
   },
@@ -140,7 +156,7 @@ export default {
     MarkDown,
     SchemaTree,
     MyHeader,
-    MapInvoke
+    Refactorinvoke
   }
 };
 </script>
@@ -148,8 +164,6 @@ export default {
 <style scoped>
 .page {
   background-color: rgb(30, 155, 155);
-  /* background-image: url("../../assets/svg/bak.svg"); */
-  background-size: cover;
   height: 1400px;
 }
 .backbtn {

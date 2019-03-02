@@ -4,7 +4,7 @@
       <!-- {{this.list}} -->
       <el-row>
         <el-col :span="24" style="text-align:left">
-          <h1 @click="to">{{this.list.name}}</h1>
+          <h1 @click="to">{{ this.list.name }}</h1>
         </el-col>
       </el-row>
 
@@ -15,7 +15,7 @@
       </el-row>
       <el-row>
         <el-col :span="24" style="text-align:left">
-          <span>{{this.list.description}}</span>
+          <span>{{ this.list.description }}</span>
         </el-col>
       </el-row>
     </el-card>

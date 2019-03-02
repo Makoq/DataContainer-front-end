@@ -12,18 +12,27 @@
 
     <el-button @click="createSchema">创建Schema</el-button>
 
-    <br>
-    <br>
-    <br>
+    <br />
+    <br />
+    <br />
 
-    <el-upload ref="uploadMapZip" action="/api/file/upload/map" :on-success="onSuccessMap">
+    <el-upload
+      ref="uploadMapZip"
+      action="/api/file/upload/map"
+      :on-success="onSuccessMap"
+    >
       <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
     </el-upload>
 
     <el-button @click="getSchemaList">加载Schema</el-button>
 
     <el-select v-model="mapSupportedSchema" placeholder="请选择Map对应的Schema">
-      <el-option v-for="item in items" :key="item.id" :label="item.name" :value="item.id"></el-option>
+      <el-option
+        v-for="item in items"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id"
+      ></el-option>
     </el-select>
 
     <el-button @click="createMap">创建Map</el-button>
@@ -37,7 +46,12 @@
     </el-upload>
 
     <el-select v-model="refactorSupportedSchema" multiple placeholder="请选择">
-      <el-option v-for="item in items" :key="item.id" :label="item.name" :value="item.id"></el-option>
+      <el-option
+        v-for="item in items"
+        :key="item.id"
+        :label="item.name"
+        :value="item.id"
+      ></el-option>
     </el-select>
 
     <el-button @click="createMap">创建Refactor</el-button>

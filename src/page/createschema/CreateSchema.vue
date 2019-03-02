@@ -6,7 +6,9 @@
         action="/api/schemaDoc/getSchemaFromFile"
         :on-success="onSuccessSchema"
       >
-        <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+        <el-button slot="trigger" size="small" type="primary"
+          >选取文件</el-button
+        >
       </el-upload>
     </el-card>
 
@@ -18,5 +20,4 @@
 <script>
 export default {};
 </script>
-<style>
-</style>
+<style></style>

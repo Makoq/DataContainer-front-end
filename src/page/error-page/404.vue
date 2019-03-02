@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="error404">
     <div class="error404-body-con">
@@ -8,10 +6,18 @@
           4
           <span>0</span> 4
         </div>
-        <p class="error404-body-con-message">YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST</p>
+        <p class="error404-body-con-message">
+          YOU&nbsp;&nbsp;LOOK&nbsp;&nbsp;LOST
+        </p>
         <div class="error404-btn-con">
           <button @click="goHome" style="width: 200px;" plain>返回首页</button>
-          <button @click="backPage" style="width: 200px;margin-left: 40px;" plain>返回上一页</button>
+          <button
+            @click="backPage"
+            style="width: 200px;margin-left: 40px;"
+            plain
+          >
+            返回上一页
+          </button>
         </div>
       </div>
     </div>

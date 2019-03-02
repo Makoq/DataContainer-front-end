@@ -1,27 +1,35 @@
 <template>
   <div>
-    <br>
+    <br />
     <el-row>
       <el-col :span="6">&nbsp;</el-col>
       <el-col :span="12">
         <el-card>
-          <h3>MapList has showed all Map methods..</h3>
+          <h3>RefactorList has showed all Refactor methods..</h3>
         </el-card>
       </el-col>
     </el-row>
-    <br>
+    <br />
     <el-row>
       <el-col :span="6">&nbsp;</el-col>
       <el-col :span="12">
         <el-table :data="list" style="width:100%" @row-click="detail" stripe>
-          <el-table-column prop="name" label="NAME" style="100%"></el-table-column>
+          <el-table-column
+            prop="name"
+            label="NAME"
+            style="100%"
+          ></el-table-column>
 
-          <el-table-column prop="description" label="Description" style="100%"></el-table-column>
+          <el-table-column
+            prop="description"
+            label="Description"
+            style="100%"
+          ></el-table-column>
         </el-table>
       </el-col>
       <el-col :span="6">&nbsp;</el-col>
     </el-row>
-    <br>
+    <br />
     <el-row>
       <el-col :span="6">&nbsp;</el-col>
       <el-col :span="12">
@@ -60,7 +68,7 @@ export default {
   },
   methods: {
     detail(row) {
-      this.$router.push("map/" + row.id);
+      this.$router.push("refactor/" + row.id);
     },
     handleCurrentChange(currentpage) {
       this.findDto.page = currentpage;
@@ -78,10 +86,10 @@ export default {
     }
   },
   created() {
-    this.$API.mapCount({
+    this.$API.refactorCount({
       success: count => {
         this.count = count;
-        this.$API.map({
+        this.$API.refactor({
           params: this.findDto,
           success: data => {
             this.list = data.content;
@@ -91,11 +99,10 @@ export default {
     });
   },
   mounted() {
-    this.$router.push("/mapListContent");
+    this.$router.push("/refactorListContent");
   }
 };
 </script>
 >
 
-<style>
-</style>
+<style></style>
